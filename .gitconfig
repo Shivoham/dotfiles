@@ -1,18 +1,19 @@
 [color]
-	diff = auto
-	status = auto
-	branch = auto
+diff = auto
+status = auto
+branch = auto
 [user]
-	name = schevalier
-	email = chevalier.syl20@gmail.com
+name = schevalier
+email = chevalier.syl20@gmail.com
 [alias]
-	ci = commit
-	co = checkout
-	st = status
-	br = branch
-	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s%Cgreen(%cr) %C(bold blue)<%an>%Creset'--abbrev-commit --date=relative
+ci = commit
+co = checkout
+st = status
+br = branch
+lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s%Cgreen(%cr) %C(bold blue)<%an>%Creset'--abbrev-commit --date=relative
 [merge]
-	tool = meld
+tool = meld
 [core]
-	editor = vim
-	fileMode = false
+editor = vim
+fileMode = false
+excludesfile = /home/shivoham/.gitignore
