@@ -10,6 +10,7 @@ set ls
 set ruler
 set clipboard=unnamedplus
 set hidden
+set directory=~/.vim/tmp
 au BufNewFile,BufRead *.twig set ft=jinja
 
 " CURSOR
@@ -45,8 +46,11 @@ nmap <leader>p "+p<CR>
 set t_Co=256
 colorscheme molokai
 
+" clear vim cache
+nnoremap <Leader><C-c> :!rm -rf ~/.vim/tmp/*<CR>
+
 " ULTISNIPS
 
 let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
