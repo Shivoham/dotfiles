@@ -6,16 +6,41 @@ set smartindent " indents one extra level according to current syntax
 set tabstop=4
 set shiftwidth=4
 set mouse=a
-set ls
+set ls=2
 set ruler
 set clipboard=unnamedplus
 set hidden
 set directory=~/.vim/tmp
-au BufNewFile,BufRead *.twig set ft=jinja
+au BufNewFile,BufRead *.twig set ft=htmljinja
+
+" map leader
+let mapleader = ","
+
+" highlight trailing spaces
+set list
+set listchars=eol:ᛎ,trail:‧,tab:▹∙,nbsp:ⅹ
+match ErrorMsg '\s\+$'
+
+function! StripTrailingWhitespace()
+  normal mZ
+  %s/\s\+$//e
+  normal `Z
+endfunction
+
+autocmd FileType php,js,css,html,xml,yaml,vim autocmd BufWritePre <buffer> :call StripTrailingWhitespace()
 
 " CURSOR
 highlight Cursor guifg=white guibg=white
 set cursorline
+
+" Ctags
+set tags+=vendor.tags
+inoremap <Leader>u <C-O>:call PhpInsertUse()<CR>
+noremap <Leader>u :call PhpInsertUse()<CR>
+inoremap <Leader>e <C-O>:call PhpExpandClass()<CR>
+noremap <Leader>e :call PhpExpandClass()<CR>
+" tags jump
+nmap <silent> <Leader>j "zyiw:exe ":tselect ".@z.""<CR>
 
 " VUNDLE
 set nocompatible              " be iMproved, required
@@ -28,8 +53,13 @@ Plugin 'gmarik/vundle'
 Plugin 'The-NERD-tree'
 Plugin 'UltiSnips'
 Plugin 'kien/ctrlp.vim.git'
-Plugin 'lepture/vim-jinja'
 Plugin 'SirVer/ultisnips'
+Plugin 'sjbach/lusty.git'
+Plugin 'Lokaltog/vim-powerline.git'
+Plugin 'arnaud-lb/vim-php-namespace'
+
+let g:Powerline_symbols = 'fancy'
+
 
 filetype plugin indent on
 
@@ -47,7 +77,11 @@ set t_Co=256
 colorscheme molokai
 
 " clear vim cache
-nnoremap <Leader><C-c> :!rm -rf ~/.vim/tmp/*<CR>
+nnoremap <leader>c :!rm -rf ~/.vim/tmp/*<CR><CR>
+
+" word navigation
+nmap <C-Right> w
+nmap <C-Left> b
 
 " ULTISNIPS
 
