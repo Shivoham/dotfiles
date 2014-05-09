@@ -35,12 +35,12 @@ set cursorline
 
 " Ctags
 set tags+=vendor.tags
-inoremap <Leader>u <C-O>:call PhpInsertUse()<CR>
-noremap <Leader>u :call PhpInsertUse()<CR>
-inoremap <Leader>e <C-O>:call PhpExpandClass()<CR>
-noremap <Leader>e :call PhpExpandClass()<CR>
+inoremap <F5> <C-O>:call PhpInsertUse()<CR>
+noremap <F5> :call PhpInsertUse()<CR>
+inoremap <F6> <C-O>:call PhpExpandClass()<CR>
+noremap <F6> :call PhpExpandClass()<CR>
 " tags jump
-nmap <silent> <Leader>j "zyiw:exe ":tselect ".@z.""<CR>
+nmap <silent> <F2> "zyiw:exe ":tselect ".@z.""<CR>
 
 " VUNDLE
 set nocompatible              " be iMproved, required
@@ -82,6 +82,8 @@ nnoremap <leader>c :!rm -rf ~/.vim/tmp/*<CR><CR>
 " word navigation
 nmap <C-Right> w
 nmap <C-Left> b
+
+nmap <C-b> <leader>lb
 
 " ULTISNIPS
 
