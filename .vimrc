@@ -9,9 +9,12 @@ set mouse=a
 set ls=2
 set ruler
 set clipboard=unnamedplus
+set colorcolumn=80
 set hidden
 set directory=~/.vim/tmp
 au BufNewFile,BufRead *.twig set ft=htmljinja
+set incsearch
+set hlsearch
 
 " map leader
 let mapleader = ","
@@ -57,9 +60,11 @@ Plugin 'SirVer/ultisnips'
 Plugin 'sjbach/lusty.git'
 Plugin 'Lokaltog/vim-powerline.git'
 Plugin 'arnaud-lb/vim-php-namespace'
+Plugin 'godlygeek/tabular'
+Plugin 'stephpy/vim-yaml'              " Simpler yaml parser
+Plugin 'tpope/vim-fugitive'
 
 let g:Powerline_symbols = 'fancy'
-
 
 filetype plugin indent on
 
@@ -79,11 +84,9 @@ colorscheme molokai
 " clear vim cache
 nnoremap <leader>c :!rm -rf ~/.vim/tmp/*<CR><CR>
 
-" word navigation
-nmap <C-Right> w
-nmap <C-Left> b
-
 nmap <C-b> <leader>lb
+nmap <C-l> <leader>lr
+nnoremap <C-k> :bd<CR>
 
 " ULTISNIPS
 
