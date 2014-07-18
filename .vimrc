@@ -32,6 +32,14 @@ endfunction
 
 autocmd FileType php,js,css,html,xml,yaml,vim autocmd BufWritePre <buffer> :call StripTrailingWhitespace()
 
+" Automatically create save directory if it does not exist
+au BufWrite * :call <SID>MkdirsIfNotExists(expand('<afile>:h'))
+function! <SID>MkdirsIfNotExists(directory)
+    if(!isdirectory(a:directory))
+        call system('mkdir -p '.shellescape(a:directory))
+    endif
+endfunction
+
 " CURSOR
 highlight Cursor guifg=white guibg=white
 set cursorline
@@ -68,6 +76,8 @@ let g:Powerline_symbols = 'fancy'
 
 filetype plugin indent on
 
+set wildmenu
+set wildmode=list:longest
 set wildignore=data/**,app/cache/**,web/bundles/**,src/*/*Bundle/vendor,src/*/vendor,old/*,app/lib/*,node_modules/**
 
 let g:ctrlp_custom_ignore = {
@@ -79,7 +89,10 @@ vmap <leader>y "+y<CR>
 nmap <leader>p "+p<CR>
 
 set t_Co=256
-colorscheme molokai
+colorscheme hybrid
+
+autocmd InsertEnter * hi LineNr      ctermfg=16 ctermbg=214 guifg=Orange guibg=#151515
+autocmd InsertLeave * hi LineNr      term=underline ctermfg=59 ctermbg=232 guifg=#605958 guibg=#151515
 
 " clear vim cache
 nnoremap <leader>c :!rm -rf ~/.vim/tmp/*<CR><CR>
