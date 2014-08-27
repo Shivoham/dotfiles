@@ -1,0 +1,14 @@
+session:
+  name: "SYMFONY"
+  windows:
+    - name: "vim"
+      clear: true
+      panes:
+          - cmd: "vim"
+    - name: "git"
+      clear: true
+      layout: 3383,239x54,0,0{155x54,0,0,27,83x54,156,0[83x27,156,0,28,83x26,156,28,29]}
+      panes:
+          - cmd: "git branch"
+          - cmd: "guard"
+          - cmd: "grunt serve"

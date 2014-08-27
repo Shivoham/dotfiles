@@ -1,0 +1,25 @@
+[color]
+    diff = auto
+    status = auto
+    branch = auto
+[user]
+    name = schevalier
+    email = chevalier.syl20@gmail.com
+[alias]
+    ci = commit
+    co = checkout
+    st = status
+    br = branch
+    lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s%Cgreen(%cr) %C(bold blue)<%an>%Creset'--abbrev-commit --date=relative
+[merge]
+    tool = meld
+[mergetool]
+    keepBackup = false
+[core]
+    editor = vim
+    fileMode = false
+    excludesfile = ~/.gitignore
+[push]
+    default = current
+[pull]
+    default = current
