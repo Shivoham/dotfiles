@@ -1,10 +1,14 @@
 dotfiles
 ========
 
-git clone git@github.com:Shivoham/dotfiles.git
+Clone repository & its submodules:
 
-  $ cd dotfiles
-  $ git submodule init
-  $ git submodule update
+    git clone git@github.com:Shivoham/dotfiles.git
 
-  $ ./setup.sh
+    cd dotfiles
+    git submodule init
+    git submodule update
+
+Initialize symlinks:
+
+    ./setup.sh
