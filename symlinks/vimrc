@@ -32,7 +32,7 @@ endfunction
 
 autocmd FileType php,js,css,html,xml,yaml,vim autocmd BufWritePre <buffer> :call StripTrailingWhitespace()
 
-" Automatically create save directory if it does not exist
+" Automatically create directory if it does not exist
 au BufWrite * :call <SID>MkdirsIfNotExists(expand('<afile>:h'))
 function! <SID>MkdirsIfNotExists(directory)
     if(!isdirectory(a:directory))
@@ -44,12 +44,20 @@ endfunction
 highlight Cursor guifg=white guibg=white
 set cursorline
 
+" Bye arrows :(
+nmap <Up> <nop>
+nmap <Down> <nop>
+nmap <Left> <nop>
+nmap <Right> <nop>
+
 " Ctags
 set tags+=vendor.tags
-inoremap <F5> <C-O>:call PhpInsertUse()<CR>
-noremap <F5> :call PhpInsertUse()<CR>
-inoremap <F6> <C-O>:call PhpExpandClass()<CR>
-noremap <F6> :call PhpExpandClass()<CR>
+
+inoremap <Leader>u <C-O>:call PhpInsertUse()<CR>
+noremap <Leader>u :call PhpInsertUse()<CR>
+inoremap <Leader>e <C-O>:call PhpExpandClass()<CR>
+noremap <Leader>e :call PhpExpandClass()<CR>
+
 " tags jump
 nmap <silent> <F2> "zyiw:exe ":tselect ".@z.""<CR>
 
