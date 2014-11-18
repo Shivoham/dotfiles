@@ -44,12 +44,6 @@ endfunction
 highlight Cursor guifg=white guibg=white
 set cursorline
 
-" Bye arrows :(
-nmap <Up> <nop>
-nmap <Down> <nop>
-nmap <Left> <nop>
-nmap <Right> <nop>
-
 " Ctags
 set tags+=vendor.tags
 
@@ -59,7 +53,7 @@ inoremap <Leader>e <C-O>:call PhpExpandClass()<CR>
 noremap <Leader>e :call PhpExpandClass()<CR>
 
 " tags jump
-nmap <silent> <F2> "zyiw:exe ":tselect ".@z.""<CR>
+nmap <silent> <F2> "zyiw:exe ":tj ".@z.""<CR>
 
 " VUNDLE
 set nocompatible              " be iMproved, required
@@ -80,6 +74,7 @@ Plugin 'godlygeek/tabular'
 Plugin 'stephpy/vim-yaml'              " Simpler yaml parser
 Plugin 'tpope/vim-fugitive'
 Plugin 'vim-scripts/bufkill.vim.git'
+Plugin 'vim-scripts/BufOnly.vim.git'
 
 let g:Powerline_symbols = 'fancy'
 
@@ -108,7 +103,11 @@ nnoremap <leader>c :!rm -rf ~/.vim/tmp/*<CR><CR>
 
 nmap <C-b> <leader>lb
 nmap <C-l> <leader>lr
-nnoremap <C-k> :BD<CR>
+nnoremap <C-k> :BD<CR>              " Kill current buffer
+nmap <leader>bc :BufOnly<CR>        " Kill buffers but active one
+
+let g:symfony_app_console_caller= "php"
+let g:symfony_app_console_path= "app/console"
 
 " ULTISNIPS
 
