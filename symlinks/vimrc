@@ -3,6 +3,8 @@ set expandtab " converts tabs to spaces
 set autoindent " automatically copy indentation from previous line
 set smartindent " indents one extra level according to current syntax
 " indents with tab = 4 spaces
+set ignorecase
+set smartcase
 set tabstop=4
 set shiftwidth=4
 set mouse=a
@@ -105,6 +107,7 @@ nmap <C-b> <leader>lb
 nmap <C-l> <leader>lr
 nnoremap <C-k> :BD<CR>              " Kill current buffer
 nmap <leader>bc :BufOnly<CR>        " Kill buffers but active one
+nnoremap <leader>/ /clearDatShit<CR>
 
 let g:symfony_app_console_caller= "php"
 let g:symfony_app_console_path= "app/console"
