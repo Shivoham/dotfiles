@@ -73,10 +73,11 @@ Plugin 'sjbach/lusty.git'
 Plugin 'Lokaltog/vim-powerline.git'
 Plugin 'arnaud-lb/vim-php-namespace'
 Plugin 'godlygeek/tabular'
-Plugin 'stephpy/vim-yaml'              " Simpler yaml parser
 Plugin 'tpope/vim-fugitive'
 Plugin 'vim-scripts/bufkill.vim.git'
 Plugin 'vim-scripts/BufOnly.vim.git'
+Plugin 'tobyS/vmustache.git'
+Plugin 'tobyS/pdv.git'
 
 let g:Powerline_symbols = 'fancy'
 
@@ -109,8 +110,8 @@ nnoremap <C-k> :BD<CR>              " Kill current buffer
 nmap <leader>bc :BufOnly<CR>        " Kill buffers but active one
 nnoremap <leader>/ /clearDatShit<CR>
 
-let g:symfony_app_console_caller= "php"
-let g:symfony_app_console_path= "app/console"
+let g:pdv_template_dir = $HOME ."/.vim/bundle/pdv/templates_snip"
+nnoremap <Leader>d :call pdv#DocumentWithSnip()<CR>
 
 " ULTISNIPS
 
