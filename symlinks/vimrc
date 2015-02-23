@@ -78,6 +78,9 @@ Plugin 'vim-scripts/bufkill.vim.git'
 Plugin 'vim-scripts/BufOnly.vim.git'
 Plugin 'tobyS/vmustache.git'
 Plugin 'tobyS/pdv.git'
+Plugin 'editorconfig/editorconfig-vim'
+Plugin 'Herzult/phpspec-vim.git'
+Plugin 'majutsushi/tagbar.git'
 
 let g:Powerline_symbols = 'fancy'
 
@@ -110,8 +113,19 @@ nnoremap <C-k> :BD<CR>              " Kill current buffer
 nmap <leader>bc :BufOnly<CR>        " Kill buffers but active one
 nnoremap <leader>/ /clearDatShit<CR>
 
+" PHPDOC
+
 let g:pdv_template_dir = $HOME ."/.vim/bundle/pdv/templates_snip"
 nnoremap <Leader>d :call pdv#DocumentWithSnip()<CR>
+
+" TAGBAR
+
+nmap <F8> :TagbarToggle<CR>
+
+" TROLL
+
+command! Yeah : ! cvlc ~/.sample/yeah.mp3 vlc://quit --play-and-exit /<cword>
+map <Leader>jj :Yeah<CR>
 
 " ULTISNIPS
 

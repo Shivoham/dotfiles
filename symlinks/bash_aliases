@@ -11,3 +11,4 @@ alias tmux='tmux -2'
 alias gosf='teamocil --here symfony'
 
 alias gpurge='purge = branch --merged master | grep -v master | xargs git branch -d'
+alias bdl='./bin/behat -dl --lang=en'
