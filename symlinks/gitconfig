@@ -2,6 +2,8 @@
     diff = auto
     status = auto
     branch = auto
+[color "status"]
+    changed = yellow
 [user]
     name = schevalier
     email = chevalier.syl20@gmail.com

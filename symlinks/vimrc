@@ -6,6 +6,7 @@ set smartindent " indents one extra level according to current syntax
 set ignorecase
 set smartcase
 set tabstop=4
+set softtabstop=4
 set shiftwidth=4
 set mouse=a
 set ls=2
@@ -81,6 +82,9 @@ Plugin 'tobyS/pdv.git'
 Plugin 'editorconfig/editorconfig-vim'
 Plugin 'Herzult/phpspec-vim.git'
 Plugin 'majutsushi/tagbar.git'
+Plugin 'stephpy/vim-yaml'
+Plugin 'vim-scripts/Rename'
+Plugin 'joonty/vdebug'
 
 let g:Powerline_symbols = 'fancy'
 
