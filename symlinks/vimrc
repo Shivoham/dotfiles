@@ -19,6 +19,9 @@ au BufNewFile,BufRead *.twig set ft=htmljinja
 set incsearch
 set hlsearch
 
+" exit from insert mode
+:imap jj <Esc>
+
 " map leader
 let mapleader = ","
 
