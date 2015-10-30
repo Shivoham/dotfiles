@@ -98,7 +98,7 @@ set wildmode=list:longest
 set wildignore=data/**,app/cache/**,web/bundles/**,src/*/*Bundle/vendor,src/*/vendor,old/*,app/lib/*,node_modules/**
 
 let g:ctrlp_custom_ignore = {
-  \ 'dir': '\v([\/]\.(git|hg|svn))|([\/]node_modules)|([\/]compiled)|([\/]dist)|([\/]app/cache)|([\/]bower_components)|([\/]doc)$',
+  \ 'dir': '\v([\/]\.(git|hg|svn))|([\/]node_modules)|([\/]compiled)|([\/]dist)|([\/]app/cache)|([\/]bower_components)|([\/]doc)|([\/]vendor)$',
   \ }
 
 " copy to x buffer
