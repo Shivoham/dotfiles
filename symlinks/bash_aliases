@@ -14,5 +14,7 @@ alias bdl='./bin/behat -dl --lang=en'
 
 alias dps='docker ps'
 alias dim='docker images'
+alias de='docker exec'
 alias dcu='docker-compose up'
 alias dcux='docker-compose --x-networking up'
+alias ctags-watch='~/Tools/ctags-watcher'
