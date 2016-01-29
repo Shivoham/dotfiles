@@ -8,7 +8,11 @@ alias rode='sf router:debug'
 alias contde='sf container:debug'
 
 alias tmux='tmux -2'
-alias gosf='teamocil --here symfony'
 
 alias gpurge='purge = branch --merged master | grep -v master | xargs git branch -d'
 alias bdl='./bin/behat -dl --lang=en'
+
+alias dps='docker ps'
+alias dim='docker images'
+alias dcu='docker-compose up'
+alias dcux='docker-compose --x-networking up'
