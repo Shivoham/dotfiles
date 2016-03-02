@@ -1,6 +1,5 @@
 #!/bin/bash
 
-alias sf='php app/console'
 alias sfcc='sf cache:clear'
 alias phantom='phantomjs --webdriver=4444'
 alias sinit='sudo setfacl -R -m u:www-data:rwX -m u:`whoami`:rwX app/cache app/logs ; sudo setfacl -dR -m u:www-data:rwx -m u:`whoami`:rwx app/cache app/logs ; sfcc'
@@ -17,4 +16,6 @@ alias dim='docker images'
 alias de='docker exec'
 alias dcu='docker-compose up'
 alias dcux='docker-compose --x-networking up'
-alias ctags-watch='~/Tools/ctags-watcher'
+alias myip='curl http://ipecho.net/plain ; echo'
+alias symfony="teamocil --here symfony"
+

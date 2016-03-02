@@ -52,6 +52,8 @@ set cursorline
 
 " Ctags
 set tags+=vendor.tags
+nnoremap <F6> :!ctags -f tags src spec features<CR>
+nnoremap <F7> :!ctags -f vendor.tags vendor<CR>
 
 inoremap <Leader>u <C-O>:call PhpInsertUse()<CR>
 noremap <Leader>u :call PhpInsertUse()<CR>
@@ -88,6 +90,7 @@ Plugin 'majutsushi/tagbar.git'
 Plugin 'stephpy/vim-yaml'
 Plugin 'vim-scripts/Rename'
 Plugin 'joonty/vdebug'
+Plugin 'austintaylor/vim-commaobject'
 
 let g:Powerline_symbols = 'fancy'
 
@@ -118,7 +121,7 @@ nmap <C-b> <leader>lb
 nmap <C-l> <leader>lr
 nnoremap <C-k> :BD<CR>              " Kill current buffer
 nmap <leader>bc :BufOnly<CR>        " Kill buffers but active one
-nnoremap <leader>/ /clearDatShit<CR>
+nnoremap <leader>/ :let @/=""<CR>
 
 " PHPDOC
 

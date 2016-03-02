@@ -35,7 +35,7 @@ prompt() {
         fi
     fi
 
-    PS1="${smiley}${git}${color_end} "
+    PS1="${smiley}${git}${DOCKER_HOST}${color_end} "
 }
 
 PROMPT_COMMAND=prompt

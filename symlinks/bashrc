@@ -113,11 +113,16 @@ if ! shopt -oq posix; then
   fi
 fi
 
-if [[ ! $TERM =~ screen-256color ]]; then
-    exec tmux -2
-fi
+#if [[ ! $TERM =~ screen-256color ]]; then
+#    exec tmux -2
+#fi
 
 if [ -f ~/.bash_prompt ]; then
     source ~/.bash_prompt
 fi
 
+dce() {
+    docker exec -it "${COMPOSE_PROJECT_NAME}_${1}_1" ${@:2}
+}
+
+export PATH=$PATH:~/Tools/
