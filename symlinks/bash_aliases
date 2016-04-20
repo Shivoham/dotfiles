@@ -18,4 +18,5 @@ alias dcu='docker-compose up'
 alias dcux='docker-compose --x-networking up'
 alias myip='curl http://ipecho.net/plain ; echo'
 alias symfony="teamocil --here symfony"
-
+alias gdiff="git diff"
+alias gst="git st"

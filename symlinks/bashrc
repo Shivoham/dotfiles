@@ -125,4 +125,4 @@ dce() {
     docker exec -it "${COMPOSE_PROJECT_NAME}_${1}_1" ${@:2}
 }
 
-export PATH=$PATH:~/Tools/
+export PATH=$PATH:~/Tools/:~/.gem/ruby/2.1.0/bin:./bin:./vendor/bin:./app
