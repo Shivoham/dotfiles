@@ -60,8 +60,13 @@ noremap <Leader>u :call PhpInsertUse()<CR>
 inoremap <Leader>e <C-O>:call PhpExpandClass()<CR>
 noremap <Leader>e :call PhpExpandClass()<CR>
 
+" Do me a grep please !
+vmap <leader>f y:grep -r "<C-r>""
+" under the cursor
+nmap <leader>f :grep -r "<C-r><C-w>"
 " tags jump
-nmap <silent> <F2> "zyiw:exe ":tj ".@z.""<CR>
+map tt g<C-]>
+map TT <C-T>
 
 " VUNDLE
 set nocompatible              " be iMproved, required

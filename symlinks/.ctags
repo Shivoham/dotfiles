@@ -1,0 +1,14 @@
+-h=.php
+--PHP-kinds=+cf
+--recurse
+--regex-php=/^[ \t]*trait[ \t]+([a-z0_9_]+)/\1/t,traits/i
+--regex-php=/Twig(_Simple)?(Function|Filter|Test)\(['"]([A-Za-z0-9_$]+)['"]/\3/
+--exclude="*/cache/*"
+--exclude="*/logs/*"
+--exclude="*/data/*"
+--exclude="\.git"
+--exclude="\.svn"
+--extra=+f
+--langdef=file
+--langmap=file:.html.twig.xml.yml.js.css.feature.xliff.xlf.sql
+--languages=PHP,file
