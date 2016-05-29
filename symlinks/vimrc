@@ -2,7 +2,7 @@ set number
 set expandtab " converts tabs to spaces
 set autoindent " automatically copy indentation from previous line
 set smartindent " indents one extra level according to current syntax
-" indents with tab = 4 spaces
+set scrolloff=3
 set ignorecase
 set smartcase
 set tabstop=4
@@ -62,11 +62,23 @@ noremap <Leader>e :call PhpExpandClass()<CR>
 
 " Do me a grep please !
 vmap <leader>f y:grep -r "<C-r>""
-" under the cursor
+" grep under the cursor
 nmap <leader>f :grep -r "<C-r><C-w>"
+set grepprg=ag\ --nogroup\ --nocolor
+
 " tags jump
 map tt g<C-]>
 map TT <C-T>
+
+" easy navigation between words
+nmap <C-h> b
+nmap <C-j> 5j
+nmap <C-k> 5k
+nmap <C-l> w
+vmap <C-h> b
+vmap <C-j> 5j
+vmap <C-k> 5k
+vmap <C-l> w
 
 " VUNDLE
 set nocompatible              " be iMproved, required
@@ -96,6 +108,7 @@ Plugin 'stephpy/vim-yaml'
 Plugin 'vim-scripts/Rename'
 Plugin 'joonty/vdebug'
 Plugin 'austintaylor/vim-commaobject'
+Plugin 'scrooloose/syntastic'
 
 let g:Powerline_symbols = 'fancy'
 
@@ -108,6 +121,7 @@ set wildignore=data/**,app/cache/**,web/bundles/**,src/*/*Bundle/vendor,src/*/ve
 let g:ctrlp_custom_ignore = {
   \ 'dir': '\v([\/]\.(git|hg|svn))|([\/]node_modules)|([\/]compiled)|([\/]dist)|([\/]app/cache)|([\/]bower_components)|([\/]doc)|([\/]vendor)$',
   \ }
+let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 
 " copy to x buffer
 vmap <leader>y "+y<CR>
@@ -123,9 +137,9 @@ autocmd InsertLeave * hi LineNr      term=underline ctermfg=59 ctermbg=232 guifg
 nnoremap <leader>c :!rm -rf ~/.vim/tmp/*<CR><CR>
 
 nmap <C-b> <leader>lb
-nmap <C-l> <leader>lr
-nnoremap <C-k> :BD<CR>              " Kill current buffer
-nmap <leader>bc :BufOnly<CR>        " Kill buffers but active one
+nmap <C-f> <leader>lr
+nmap <leader>bb :BD<CR>              " Kill current buffer
+nmap <leader>bc :BufOnly<CR>
 nnoremap <leader>/ :let @/=""<CR>
 
 " PHPDOC
@@ -147,3 +161,12 @@ map <Leader>jj :Yeah<CR>
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+
+map <up> <nop>
+map <down> <nop>
+map <left> <nop>
+map <right> <nop>
+imap <up> <nop>
+imap <down> <nop>
+imap <left> <nop>
+imap <right> <nop>
