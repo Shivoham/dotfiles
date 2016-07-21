@@ -15,7 +15,7 @@ prompt() {
     then
         smiley="${color_start} \W"
     else
-        smiley="${color_start_error} \W"
+        smiley="${color_start_error} [${last_status}] \W"
     fi
 
     if [ -z "$git_branch" ]

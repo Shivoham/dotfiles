@@ -8,7 +8,7 @@ set smartcase
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
-set mouse=a
+"set mouse=a
 set ls=2
 set ruler
 set clipboard=unnamedplus
@@ -80,6 +80,9 @@ vmap <C-j> 5j
 vmap <C-k> 5k
 vmap <C-l> w
 
+" MACROS
+let @a='^f,a€kD'
+
 " VUNDLE
 set nocompatible              " be iMproved, required
 filetype off                  " required
@@ -104,11 +107,14 @@ Plugin 'tobyS/pdv.git'
 Plugin 'editorconfig/editorconfig-vim'
 Plugin 'Herzult/phpspec-vim.git'
 Plugin 'majutsushi/tagbar.git'
-Plugin 'stephpy/vim-yaml'
 Plugin 'vim-scripts/Rename'
 Plugin 'joonty/vdebug'
 Plugin 'austintaylor/vim-commaobject'
 Plugin 'scrooloose/syntastic'
+Plugin 'docteurklein/vim-symfony'
+Plugin 'tpope/vim-abolish'
+Plugin 'tpope/vim-surround'
+Plugin 'Raimondi/delimitMate'
 
 let g:Powerline_symbols = 'fancy'
 
@@ -122,6 +128,9 @@ let g:ctrlp_custom_ignore = {
   \ 'dir': '\v([\/]\.(git|hg|svn))|([\/]node_modules)|([\/]compiled)|([\/]dist)|([\/]app/cache)|([\/]bower_components)|([\/]doc)|([\/]vendor)$',
   \ }
 let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+
+" loads the .vimrc in the current folder if exists
+set exrc
 
 " copy to x buffer
 vmap <leader>y "+y<CR>
@@ -153,8 +162,10 @@ nmap <F8> :TagbarToggle<CR>
 
 " TROLL
 
-command! Yeah : ! cvlc ~/.sample/yeah.mp3 vlc://quit --play-and-exit /<cword>
+command! Yeah : ! cvlc ~/.samples/Yeah.mp3 vlc://quit --play-and-exit
+command! Prout : ! cvlc ~/.samples/third_type.mp3 vlc://quit --play-and-exit
 map <Leader>jj :Yeah<CR>
+map <Leader>tt :Prout<CR>
 
 " ULTISNIPS
 
