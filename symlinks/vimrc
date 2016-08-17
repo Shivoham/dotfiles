@@ -115,6 +115,7 @@ Plugin 'docteurklein/vim-symfony'
 Plugin 'tpope/vim-abolish'
 Plugin 'tpope/vim-surround'
 Plugin 'Raimondi/delimitMate'
+Plugin 'karlbright/qfdo.vim'
 
 let g:Powerline_symbols = 'fancy'
 
