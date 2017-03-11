@@ -19,7 +19,7 @@
     keepBackup = false
 [core]
     editor = vim
-    fileMode = false
+    fileMode = true
     excludesfile = ~/.gitignore
 [push]
     default = current

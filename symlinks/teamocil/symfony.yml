@@ -7,6 +7,6 @@ windows:
     root: .
     layout: 0899,211x55,0,0{130x55,0,0,3,80x55,131,0[80x27,131,0,4,80x27,131,28,5]}
     panes:
-      - git status
-      - fortune
-      - htop
+      - 'git status'
+      - 'fortune -s'
+      - 'htop'

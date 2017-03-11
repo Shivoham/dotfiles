@@ -8,7 +8,7 @@ set smartcase
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
-"set mouse=a
+set mouse=a
 set ls=2
 set ruler
 set clipboard=unnamedplus
@@ -116,6 +116,8 @@ Plugin 'tpope/vim-abolish'
 Plugin 'tpope/vim-surround'
 Plugin 'Raimondi/delimitMate'
 Plugin 'karlbright/qfdo.vim'
+Plugin 'elixir-lang/vim-elixir'
+
 
 let g:Powerline_symbols = 'fancy'
 
@@ -182,3 +184,4 @@ imap <up> <nop>
 imap <down> <nop>
 imap <left> <nop>
 imap <right> <nop>
+

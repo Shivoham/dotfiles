@@ -24,6 +24,8 @@ alias dim='docker images'
 alias de='docker exec'
 alias dcu='docker-compose up'
 alias dce='docker-compose exec'
+alias dc='docker-compose'
+alias dcs='docker-compose stop'
 
 # STUFF
 alias myip='curl http://ipecho.net/plain ; echo'
