@@ -36,7 +36,7 @@ function! StripTrailingWhitespace()
   normal `Z
 endfunction
 
-autocmd FileType php,js,css,html,xml,yaml,vim autocmd BufWritePre <buffer> :call StripTrailingWhitespace()
+autocmd FileType php,js,ts,css,html,xml,yaml,vim autocmd BufWritePre <buffer> :call StripTrailingWhitespace()
 
 " Automatically create directory if it does not exist
 au BufWrite * :call <SID>MkdirsIfNotExists(expand('<afile>:h'))
@@ -52,8 +52,8 @@ set cursorline
 
 " Ctags
 set tags+=vendor.tags
-nnoremap <F6> :!ctags -f tags src spec features<CR>
-nnoremap <F7> :!ctags -f vendor.tags vendor<CR>
+nnoremap <F6> :!ctags -f tags src spec features&<CR>
+nnoremap <F7> :!ctags -f vendor.tags vendor node_modules&<CR>
 
 inoremap <Leader>u <C-O>:call PhpInsertUse()<CR>
 noremap <Leader>u :call PhpInsertUse()<CR>
@@ -117,6 +117,8 @@ Plugin 'tpope/vim-surround'
 Plugin 'Raimondi/delimitMate'
 Plugin 'karlbright/qfdo.vim'
 Plugin 'elixir-lang/vim-elixir'
+Plugin 'isRuslan/vim-es6'
+Plugin 'leafgarland/typescript-vim'
 
 
 let g:Powerline_symbols = 'fancy'
