@@ -36,7 +36,8 @@ function! StripTrailingWhitespace()
   normal `Z
 endfunction
 
-autocmd FileType php,js,ts,css,html,xml,yaml,vim autocmd BufWritePre <buffer> :call StripTrailingWhitespace()
+autocmd FileType php,javascript,ts,css,html,xml,yaml,vim autocmd BufWritePre <buffer> :call StripTrailingWhitespace()
+autocmd FileType html,javascript setlocal tabstop=2 softtabstop=2 shiftwidth=2
 
 " Automatically create directory if it does not exist
 au BufWrite * :call <SID>MkdirsIfNotExists(expand('<afile>:h'))
