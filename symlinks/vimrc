@@ -59,8 +59,8 @@ set cursorline
 
 " Ctags
 set tags+=vendor.tags
-nnoremap <F6> :!ctags -f tags src spec features&<CR>
-nnoremap <F7> :!ctags -f vendor.tags vendor node_modules&<CR>
+nnoremap <Leader><F6> :!ctags -f tags src spec features&<CR>
+nnoremap <Leader><F7> :!ctags -f vendor.tags vendor node_modules&<CR>
 
 inoremap <Leader>u <C-O>:call PhpInsertUse()<CR>
 noremap <Leader>u :call PhpInsertUse()<CR>
@@ -119,6 +119,7 @@ Plug 'karlbright/qfdo.vim'
 Plug 'elixir-lang/vim-elixir'
 Plug 'isRuslan/vim-es6'
 Plug 'leafgarland/typescript-vim'
+Plug 'posva/vim-vue'
 Plug 'prettier/vim-prettier', {
   \ 'do': 'yarn install',
   \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue'] }
@@ -159,7 +160,7 @@ nnoremap <leader>/ :let @/=""<CR>
 
 " PHPDOC
 
-let g:pdv_template_dir = $HOME ."/.vim/bundle/pdv/templates_snip"
+let g:pdv_template_dir = $HOME ."/.vim/plugged/pdv/templates_snip"
 nnoremap <Leader>d :call pdv#DocumentWithSnip()<CR>
 
 " PRETTIER

@@ -121,4 +121,4 @@ if [ -f ~/.bash_prompt ]; then
     source ~/.bash_prompt
 fi
 
-export PATH=$PATH:~/Tools/:~/.gem/ruby/2.1.0/bin:./bin:./vendor/bin:./app
+export PATH=$PATH:~/Tools/:~/.gem/ruby/2.1.0/bin:./bin:./vendor/bin:./app:~/.local/bin
