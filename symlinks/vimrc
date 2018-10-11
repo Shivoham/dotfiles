@@ -43,7 +43,7 @@ function! StripTrailingWhitespace()
 endfunction
 
 autocmd FileType php,javascript,ts,css,html,xml,yaml,vim autocmd BufWritePre <buffer> :call StripTrailingWhitespace()
-autocmd FileType html,javascript,css setlocal tabstop=2 softtabstop=2 shiftwidth=2
+autocmd FileType html,javascript,css,vue setlocal tabstop=2 softtabstop=2 shiftwidth=2
 
 " Automatically create directory if it does not exist
 au BufWrite * :call <SID>MkdirsIfNotExists(expand('<afile>:h'))
@@ -170,13 +170,6 @@ autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.gra
 " TAGBAR
 
 nmap <F8> :TagbarToggle<CR>
-
-" TROLL
-
-command! Yeah : ! cvlc ~/.samples/Yeah.mp3 vlc://quit --play-and-exit
-command! Prout : ! cvlc ~/.samples/third_type.mp3 vlc://quit --play-and-exit
-map <Leader>jj :Yeah<CR>
-map <Leader>tt :Prout<CR>
 
 " ULTISNIPS
 
