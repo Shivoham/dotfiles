@@ -11,13 +11,14 @@ set shiftwidth=4
 set mouse=a
 set ls=2
 set ruler
-set clipboard=unnamedplus
+set clipboard=unnamed
 set colorcolumn=80
 set hidden
 set directory=~/.vim/tmp
 au BufNewFile,BufRead *.twig set ft=htmljinja
 set incsearch
 set hlsearch
+set backspace=indent,eol,start
 
 " exit from insert mode
 :imap jj <Esc>
@@ -60,12 +61,18 @@ set cursorline
 " Ctags
 set tags+=vendor.tags
 nnoremap <Leader><F6> :!ctags -f tags src spec features&<CR>
-nnoremap <Leader><F7> :!ctags -f vendor.tags vendor node_modules&<CR>
+nnoremap <Leader><F7> :!ctags -f vendor.tags node_modules vendor&<CR>
 
-inoremap <Leader>u <C-O>:call PhpInsertUse()<CR>
-noremap <Leader>u :call PhpInsertUse()<CR>
 inoremap <Leader>e <C-O>:call PhpExpandClass()<CR>
 noremap <Leader>e :call PhpExpandClass()<CR>
+
+nmap <Leader>u :call phpactor#UseAdd()<CR>
+nmap <Leader>e :call phpactor#ClassExpand()<CR>
+nmap <Leader>mm :call phpactor#ContextMenu()<CR>
+nmap <Leader>an :call phpactor#Navigate()<CR>
+nmap <Leader>gt :call phpactor#GotoDefinition()<CR>
+nmap <Leader>tt :call phpactor#Transform()<CR>
+vmap <silent><Leader>em :<C-U>call phpactor#ExtractMethod()<CR>
 
 " Do me a grep please !
 vmap <leader>f y:grep -r "<C-r>""
@@ -91,12 +98,11 @@ vmap <C-l> w
 let @a='^f,a€kD'
 
 call plug#begin()
+Plug 'nvim-lualine/lualine.nvim'
 Plug 'vim-scripts/The-NERD-tree'
 Plug 'vim-scripts/UltiSnips'
-Plug 'kien/ctrlp.vim'
 Plug 'SirVer/ultisnips'
 Plug 'sjbach/lusty'
-Plug 'powerline/powerline', { 'rtp': 'powerline/bindings/vim' }
 Plug 'arnaud-lb/vim-php-namespace'
 Plug 'godlygeek/tabular'
 Plug 'tpope/vim-fugitive'
@@ -108,7 +114,6 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'Herzult/phpspec-vim'
 Plug 'majutsushi/tagbar'
 Plug 'vim-scripts/Rename'
-Plug 'joonty/vdebug'
 Plug 'austintaylor/vim-commaobject'
 Plug 'scrooloose/syntastic'
 Plug 'docteurklein/vim-symfony'
@@ -120,21 +125,37 @@ Plug 'elixir-lang/vim-elixir'
 Plug 'isRuslan/vim-es6'
 Plug 'leafgarland/typescript-vim'
 Plug 'posva/vim-vue'
+Plug 'joonty/vdebug'
 Plug 'prettier/vim-prettier', {
   \ 'do': 'yarn install',
   \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue'] }
-call plug#end()
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 
-let g:Powerline_symbols = 'fancy'
+" Autocompletion
+Plug 'ncm2/ncm2'
+Plug 'roxma/nvim-yarp' " Dependency of ncm2
+Plug 'phpactor/phpactor', {'for': 'php', 'tag': '*', 'do': 'composer install --no-dev -o'}
+Plug 'phpactor/ncm2-phpactor'
+
+call plug#end()
 
 set wildmenu
 set wildmode=list:longest
 set wildignore=data/**,app/cache/**,web/bundles/**,src/*/*Bundle/vendor,src/*/vendor,old/*,app/lib/*,node_modules/**
+"
+" --column: Show column number
+" --line-number: Show line number
+" --no-heading: Do not show file headings in results
+" --fixed-strings: Search term as a literal string
+" --ignore-case: Case insensitive search
+" --hidden: Search hidden files and folders
+" --follow: Follow symlinks
+" --glob: Additional conditions for search (in this case ignore everything in the .git/ folder)
+" --color: Search color options
+command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>), 1, <bang>0)
 
-let g:ctrlp_custom_ignore = {
-  \ 'dir': '\v([\/]\.(git|hg|svn))|([\/]node_modules)|([\/]compiled)|([\/]dist)|([\/]app/cache)|([\/]bower_components)|([\/]doc)|([\/]vendor)$',
-  \ }
-let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+nmap <C-p> <Esc>:Files<CR>
 
 " loads the .vimrc in the current folder if exists
 set exrc
@@ -165,7 +186,7 @@ nnoremap <Leader>d :call pdv#DocumentWithSnip()<CR>
 
 " PRETTIER
 let g:prettier#autoformat = 0
-autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue PrettierAsync
+"autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue PrettierAsync
 
 " TAGBAR
 
@@ -177,12 +198,44 @@ let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 
-map <up> <nop>
-map <down> <nop>
-map <left> <nop>
-map <right> <nop>
-imap <up> <nop>
-imap <down> <nop>
-imap <left> <nop>
-imap <right> <nop>
+" VDEBUG
 
+" LUALINE
+lua require('lualine').setup { options = { theme = 'powerline' } }
+
+"let g:vdebug_keymap = {
+"\    "run" : "<Leader>r",
+"\    "run_to_cursor" : "<Up>",
+"\    "step_over" : "<Down>",
+"\    "step_into" : "<Right>",
+"\    "step_out" : "<Left>",
+"\    "close" : "q",
+"\    "detach" : "<F7>",
+"\    "set_breakpoint" : "<Leader>s",
+"\    "eval_visual" : "<Leader>e"
+"\}
+
+" Allows Vdebug to bind to all interfaces.
+let g:vdebug_options = {}
+
+" Stops execution at the first line.
+let g:vdebug_options['break_on_open'] = 1
+let g:vdebug_options['max_children'] = 128
+
+" Use the compact window layout.
+let g:vdebug_options['watch_window_style'] = 'compact'
+
+" Because it's the company default.
+let g:vdebug_options['ide_key'] = 'PHPSTORM'
+
+" Need to set as empty for this to work with Vagrant boxes.
+let g:vdebug_options['server'] = ""
+
+let g:vdebug_options['port'] = 9003
+
+"let g:vdebug_options['path_maps'] = {'/app': getcwd()}
+
+"" Autocompletion phpactor
+" enable ncm2 for all buffers
+autocmd BufEnter * call ncm2#enable_for_buffer()
+set completeopt=noinsert,menuone,noselect
