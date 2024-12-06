@@ -44,7 +44,7 @@ function! StripTrailingWhitespace()
 endfunction
 
 autocmd FileType php,javascript,ts,css,html,xml,yaml,vim autocmd BufWritePre <buffer> :call StripTrailingWhitespace()
-autocmd FileType html,javascript,css,vue setlocal tabstop=2 softtabstop=2 shiftwidth=2
+autocmd FileType html,javascript,css,vue,typescript,svelte setlocal tabstop=2 softtabstop=2 shiftwidth=2
 
 " Automatically create directory if it does not exist
 au BufWrite * :call <SID>MkdirsIfNotExists(expand('<afile>:h'))
@@ -94,6 +94,13 @@ vmap <C-j> 5j
 vmap <C-k> 5k
 vmap <C-l> w
 
+imap <silent><script><expr> <C-j> copilot#Next()
+imap <silent><script><expr> <C-k> copilot#Previous()
+imap <silent><script><expr> <C-x> copilot#Dismiss()
+imap <silent><script><expr> <C-s> copilot#Suggest()
+
+highlight CopilotSuggestion guifg=#FF69B4 ctermfg=8
+
 " MACROS
 let @a='^f,a€kD'
 
@@ -125,25 +132,66 @@ Plug 'elixir-lang/vim-elixir'
 Plug 'isRuslan/vim-es6'
 Plug 'leafgarland/typescript-vim'
 Plug 'posva/vim-vue'
-Plug 'joonty/vdebug'
 Plug 'prettier/vim-prettier', {
   \ 'do': 'yarn install',
   \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue'] }
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
+Plug 'vim-test/vim-test'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
 " Autocompletion
-Plug 'ncm2/ncm2'
-Plug 'roxma/nvim-yarp' " Dependency of ncm2
+" Plug 'ncm2/ncm2'
+" Plug 'roxma/nvim-yarp' " Dependency of ncm2
 Plug 'phpactor/phpactor', {'for': 'php', 'tag': '*', 'do': 'composer install --no-dev -o'}
-Plug 'phpactor/ncm2-phpactor'
+" Plug 'phpactor/ncm2-phpactor'
+Plug 'github/copilot.vim'
+
+" Debug
+Plug 'williamboman/mason.nvim'
+Plug 'mfussenegger/nvim-dap'
+Plug 'rcarriga/nvim-dap-ui'
+Plug 'jayp0521/mason-nvim-dap.nvim'
+
+" Colors
+Plug 'kyazdani42/nvim-web-devicons'
+Plug 'ryanoasis/vim-devicons'
+Plug 'catppuccin/nvim', { 'as': 'catppucin'}
+
+" LSP
+Plug 'williamboman/mason-lspconfig.nvim'
+Plug 'neovim/nvim-lspconfig'
+"Plug 'VonHeikemen/lsp-zero.nvim'
+"Plug 'jay-babu/mason-null-ls.nvim'
+"Plug 'jose-elias-alvarez/null-ls.nvim'
+"Plug 'nvim-lua/plenary.nvim'
+"Plug 'j-hui/fidget.nvim', { 'tag': 'legacy' }
+"
+""" Autocompletion
+"Plug 'hrsh7th/nvim-cmp'
+"Plug 'hrsh7th/cmp-buffer'
+"Plug 'hrsh7th/cmp-nvim-lsp-signature-help'
+"Plug 'hrsh7th/cmp-nvim-lsp'
+"Plug 'hrsh7th/cmp-nvim-lua'
+"Plug 'hrsh7th/cmp-path'
+"Plug 'hrsh7th/cmp-vsnip'
+"Plug 'hrsh7th/vim-vsnip'
+"Plug 'hrsh7th/vim-vsnip-integ'
+
+" Autocompletion
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/cmp-buffer'
+Plug 'hrsh7th/cmp-path'
+Plug 'hrsh7th/cmp-cmdline'
+Plug 'hrsh7th/nvim-cmp'
+Plug 'quangnguyen30192/cmp-nvim-ultisnips'
 
 call plug#end()
 
 set wildmenu
 set wildmode=list:longest
 set wildignore=data/**,app/cache/**,web/bundles/**,src/*/*Bundle/vendor,src/*/vendor,old/*,app/lib/*,node_modules/**
-"
+
 " --column: Show column number
 " --line-number: Show line number
 " --no-heading: Do not show file headings in results
@@ -153,7 +201,7 @@ set wildignore=data/**,app/cache/**,web/bundles/**,src/*/*Bundle/vendor,src/*/ve
 " --follow: Follow symlinks
 " --glob: Additional conditions for search (in this case ignore everything in the .git/ folder)
 " --color: Search color options
-command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>), 1, <bang>0)
+command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --hidden --follow --glob "!{.git/*,node_modules/**/*,.devenv/*}" --color "always" '.shellescape(<q-args>), 1, <bang>0)
 
 nmap <C-p> <Esc>:Files<CR>
 
@@ -165,7 +213,9 @@ vmap <leader>y "+y<CR>
 nmap <leader>p "+p<CR>
 
 set t_Co=256
-colorscheme hybrid
+
+"colorscheme hybrid
+colorscheme catppuccin-mocha
 
 autocmd InsertEnter * hi LineNr      ctermfg=16 ctermbg=214 guifg=Orange guibg=#151515
 autocmd InsertLeave * hi LineNr      term=underline ctermfg=59 ctermbg=232 guifg=#605958 guibg=#151515
@@ -181,7 +231,7 @@ nnoremap <leader>/ :let @/=""<CR>
 
 " PHPDOC
 
-let g:pdv_template_dir = $HOME ."/.vim/plugged/pdv/templates_snip"
+let g:pdv_template_dir = $HOME ."/.local/share/nvim/plugged/pdv/templates_snip"
 nnoremap <Leader>d :call pdv#DocumentWithSnip()<CR>
 
 " PRETTIER
@@ -192,50 +242,41 @@ let g:prettier#autoformat = 0
 
 nmap <F8> :TagbarToggle<CR>
 
+" NERDTREE
+
+let NERDTreeShowHidden=1
+
 " ULTISNIPS
 
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 
-" VDEBUG
-
 " LUALINE
 lua require('lualine').setup { options = { theme = 'powerline' } }
 
-"let g:vdebug_keymap = {
-"\    "run" : "<Leader>r",
-"\    "run_to_cursor" : "<Up>",
-"\    "step_over" : "<Down>",
-"\    "step_into" : "<Right>",
-"\    "step_out" : "<Left>",
-"\    "close" : "q",
-"\    "detach" : "<F7>",
-"\    "set_breakpoint" : "<Leader>s",
-"\    "eval_visual" : "<Leader>e"
-"\}
-
-" Allows Vdebug to bind to all interfaces.
-let g:vdebug_options = {}
-
-" Stops execution at the first line.
-let g:vdebug_options['break_on_open'] = 1
-let g:vdebug_options['max_children'] = 128
-
-" Use the compact window layout.
-let g:vdebug_options['watch_window_style'] = 'compact'
-
-" Because it's the company default.
-let g:vdebug_options['ide_key'] = 'PHPSTORM'
-
-" Need to set as empty for this to work with Vagrant boxes.
-let g:vdebug_options['server'] = ""
-
-let g:vdebug_options['port'] = 9003
-
-"let g:vdebug_options['path_maps'] = {'/app': getcwd()}
-
 "" Autocompletion phpactor
 " enable ncm2 for all buffers
-autocmd BufEnter * call ncm2#enable_for_buffer()
+" autocmd BufEnter * call ncm2#enable_for_buffer()
+
 set completeopt=noinsert,menuone,noselect
+
+" vim-test
+nmap <silent> <leader>t :TestNearest<CR>
+nmap <silent> <leader>T :TestFile<CR>
+
+vmap J :m '>+1<CR>gv=gv
+vmap K :m '<-2<CR>gv=gv
+
+" When using `dd` in the quickfix list, remove the item from the quickfix list.
+function! RemoveQFItem()
+  let curqfidx = line('.') - 1
+  let qfall = getqflist()
+  call remove(qfall, curqfidx)
+  call setqflist(qfall, 'r')
+  execute curqfidx + 1 . "cfirst"
+  :copen
+endfunction
+:command! RemoveQFItem :call RemoveQFItem()
+" Use map <buffer> to only map dd in the quickfix window. Requires +localmap
+autocmd FileType qf map <buffer> dd :RemoveQFItem<cr>

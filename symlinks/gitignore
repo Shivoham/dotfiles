@@ -8,3 +8,6 @@ parameters.ini
 *_local.yml
 behat.yml
 Guardfile
+.phpactor.json
+extract.py
+import.py

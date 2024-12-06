@@ -1,0 +1,7 @@
+require("shivoham.dap")
+require("shivoham.catppuccin")
+require("shivoham.treesitter")
+require("shivoham.set")
+require("shivoham.mason")
+require("shivoham.lsp")
+require("shivoham.cmp")

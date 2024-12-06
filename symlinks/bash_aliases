@@ -2,14 +2,14 @@
 
 # SYMFONY
 alias g='git'
-alias sf='bin/console'
+alias sf='[ -f app/console ] && ./app/console || ./bin/console'
 alias sfcc='sf cache:clear'
 alias sinit='sudo setfacl -R -m u:www-data:rwX -m u:`whoami`:rwX app/cache app/logs ; sudo setfacl -dR -m u:www-data:rwx -m u:`whoami`:rwx app/cache app/logs ; sfcc'
 alias rode='sf debug:router'
 alias contde='sf debug:container'
 
 # TEAMOCIL
-alias symfony="teamocil --here symfony"
+#alias symfony="teamocil --here symfony"
 
 # TMUX
 alias tmux='tmux -2'

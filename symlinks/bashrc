@@ -16,7 +16,7 @@ HISTCONTROL=ignoreboth
 shopt -s histappend
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE=1000
+HISTSIZE=10000
 HISTFILESIZE=2000
 
 # check the window size after each command and, if necessary,
@@ -113,12 +113,27 @@ if ! shopt -oq posix; then
   fi
 fi
 
-#if [[ ! $TERM =~ screen-256color ]]; then
-#    exec tmux -2
-#fi
-
 if [ -f ~/.bash_prompt ]; then
     source ~/.bash_prompt
 fi
 
-export PATH=$PATH:~/Tools/:~/.gem/ruby/2.1.0/bin:./bin:./vendor/bin:./app:~/.local/bin
+export FZF_DEFAULT_COMMAND='rg --files --hidden --no-ignore-vcs --follow --glob "!{.git/*,node_modules/*,vendor/*,app/cache*,.idea/*,.devenv/*,.venv/*}"'
+
+export PATH=$PATH:~/Tools/:~/.gem/ruby/2.6.0/bin:./bin:./vendor/bin:./app:~/.local/bin:~/Tools/nvim_0.9.0/bin:/opt/homebrew/bin:/usr/local/bin
+export PATH="/usr/local/opt/php:$PATH"
+export PATH="/usr/local/go/bin:$PATH"
+export PATH="/Users/sylvain.chevalier/.composer/vendor/bin:$PATH"
+export PATH="/opt/homebrew/opt/php@8.2/bin:$PATH"
+export PATH="/opt/homebrew/opt/php@8.2/sbin:$PATH"
+
+if [ -f "$(brew --prefix)/etc/bash_completion.d/git-completion.bash" ]; then
+  . $(brew --prefix)/etc/bash_completion.d/git-completion.bash
+fi
+#
+# Nix
+if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
+. '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
+fi
+# End Nix
+
+eval "$(zoxide init bash)"

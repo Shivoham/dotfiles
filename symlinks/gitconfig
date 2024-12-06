@@ -1,33 +1,49 @@
-[color]
-    diff = auto
-    status = auto
-    branch = auto
-[color "status"]
-    changed = yellow
 [user]
     name = schevalier
-    email = chevalier.syl20@gmail.com
+    email = sylvain.chevalier@openclassrooms.com
+[core]
+    autocrlf = input
+	excludesfile = /Users/sylvain.chevalier/.gitignore_global
+    editor = nvim
+    fileMode = true
+    excludesfile = ~/.gitignore
+[filter "lfs"]
+    clean = git-lfs clean -- %f
+    smudge = git-lfs smudge -- %f
+    process = git-lfs filter-process
+    required = true
+[merge]
+    tool = nvim
+    #tool = meld
+[mergetool]
+    keepBackup = false
+    prompt = false
+[mergetool "nvim"]
+	cmd = nvim -d \"$LOCAL\" \"$MERGED\" \"$REMOTE\"
+[mergetool "meld"]
+    trustExitCode = true
+    cmd = open -W -a Meld --args --auto-merge \"$PWD/$LOCAL\" \"$PWD/$BASE\" \"$PWD/$REMOTE\" --output=\"$PWD/$MERGED\"
 [alias]
     ci = commit
     co = checkout
     st = status
     br = branch
     lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s%Cgreen(%cr) %C(bold blue)<%an>%Creset'--abbrev-commit --date=relative
-[merge]
-    tool = meld
-[mergetool]
-    keepBackup = false
 [core]
-    editor = vim
+    editor = nvim
     fileMode = true
     excludesfile = ~/.gitignore
 [push]
     default = current
 [pull]
     default = current
+[color]
+    diff = auto
+    status = auto
+    branch = auto
+[color "status"]
+    changed = yellow
 [pager]
-	log = /usr/share/doc/git/contrib/diff-highlight/diff-highlight | less
-	show = /usr/share/doc/git/contrib/diff-highlight/diff-highlight | less
-	diff = /usr/share/doc/git/contrib/diff-highlight/diff-highlight | less
-[interactive]
-    diffFilter = /usr/share/doc/git/contrib/diff-highlight/diff-highlight
+    #log = /usr/share/doc/git/contrib/diff-highlight/diff-highlight | less
+    #show = /usr/share/doc/git/contrib/diff-highlight/diff-highlight | less
+    #diff = /usr/share/doc/git/contrib/diff-highlight/diff-highlight | less
